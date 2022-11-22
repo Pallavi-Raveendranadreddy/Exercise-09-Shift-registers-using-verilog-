@@ -41,39 +41,84 @@ FIGURE-04
 A Parallel in Parallel out (PIPO) shift register is used as a temporary storage device and like SISO Shift register it acts as a delay element.
 
 ### Procedure
-/* write all the steps invloved */
 
+1.Use quartus software and import required modules.
+
+2.Assign inputs and outputs for shift registers.
+
+3.Assign logic for input to give output at positive edge.
+
+4.Perform opertaions and produce rtl circuit.
+
+5.end module
 
 
 ### PROGRAM 
 /*
 Program for  Implementation-of Shift-registers-using-verilog-
-Developed by: 
-RegisterNumber:  
+Developed by: VALASAREDDY PALLAVI
+RegisterNumber: 212221240059 
 */
+###PROGRAM 1
+```
+module sipo(c,si,po);
+input c,si;
+output [7:0] po;
+reg [7:0] temp;
 
-
-
-
-
+always @ (posedge c)
+begin
+temp = {temp[6:0],si};
+end
+assign po = temp;
+endmodule 
+```
 
 ### RTL LOGIC  REGISTERS   
 
-
-
-
-
-
-
+![image](https://github.com/Nagajyothichinta/Exercise-09-Shift-registers-using-verilog-/blob/main/x.png)
 
 
 ### TIMING DIGRAMS FOR SHIFT REGISTERS
-
-
-
-
-
-
-
-
+![image](https://github.com/Nagajyothichinta/Exercise-09-Shift-registers-using-verilog-/blob/main/x1.png)
+### PROGRAM 2
+```
+module piro(c,pi,so,load);
+input [3:0] pi;
+input load,c;
+output reg so;
+reg [3:0] temp;
+always @ (posedge c)
+begin 
+if(load)
+temp <= pi;
+else
+begin
+so<=temp[3];
+temp <={temp[2:0],1'b0};
+end
+end
+endmodule
+```
+### RTL LOGIC  REGISTERS   
+![image](https://github.com/Nagajyothichinta/Exercise-09-Shift-registers-using-verilog-/blob/main/x2.png)
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+![image](https://github.com/Nagajyothichinta/Exercise-09-Shift-registers-using-verilog-/blob/main/x3.png)
+### PROGRAM 3
+```
+module sipo(pi,po,clk);
+input clk;
+input [3:0] pi;
+output reg [3:0] po;
+always @ (posedge clk)
+begin 
+po=pi;
+end
+endmodule 
+```
+### RTL LOGIC REGISTERS
+![image](https://github.com/Nagajyothichinta/Exercise-09-Shift-registers-using-verilog-/blob/main/x4.png)
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+![image](https://github.com/Nagajyothichinta/Exercise-09-Shift-registers-using-verilog-/blob/main/x5.png)
 ### RESULTS 
+THUS THE PROGRAM TO IMPLEMENT SHIFT REGISTERS IS DONE SUCCESSFUL.
